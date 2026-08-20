@@ -1,8 +1,9 @@
-import discord
-from discord import app_commands
-from discord.ext import commands
-import asyncio
+import os
 import random
+import asyncio
+from discord.ext import commands
+from discord import app_commands
+import discord
 
 # Direct Bot Setup
 intents = discord.Intents.default()
