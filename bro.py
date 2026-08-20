@@ -53,7 +53,7 @@ async def broadcast(
         await interaction.response.send_message("❌ WHERE IS PERIMISSION ? (Administrator) DONT DO THAT AGAIN", ephemeral=True)
         return
 
-    await interaction.response.send_message(f"🚀 BROADCAST STARTED 1,2,3 {interaction.guild.member_count} members...", ephemeral=True)
+    await interaction.response.send_message(f"🚀 BROADCAST STARTED JUST WAIT WE WILL SEND TO  {interaction.guild.member_count} members...", ephemeral=True)
 
     sent = 0
     failed = 0
