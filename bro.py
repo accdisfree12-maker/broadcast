@@ -70,4 +70,4 @@ async def broadcast(
 
     await interaction.followup.send(f"✅ All DONE!\n• SEND TO : **{sent}**\n• FAILED TO SEND TO : **{failed}**", ephemeral=True)
 
-bot.run("TOKEN")
+bot.run(os.getenv("TOKEN"))
