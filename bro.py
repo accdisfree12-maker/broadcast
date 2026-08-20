@@ -1,13 +1,12 @@
 import os
 import random
 import asyncio
-from discord.ext import commands
-from discord import app_commands
 import discord
+from discord import app_commands
+from discord.ext import commands
 
-# Direct Bot Setup
 intents = discord.Intents.default()
-intents.members = True  # Khassk tf3el 'Server Members Intent' f Discord Developer Portal
+intents.members = True
 
 class BroadcastBot(commands.Bot):
     def __init__(self):
@@ -18,12 +17,18 @@ class BroadcastBot(commands.Bot):
 
 bot = BroadcastBot()
 
-# ID dial l-room li bghiti ykhddam fiha l-bot ghir fiha (Bddel had الرقم)
 ALLOWED_CHANNEL_ID = 1539821380709912636 
 
 @bot.event
 async def on_ready():
     print(f"Logged in as {bot.user} (ID: {bot.user.id})")
+    
+    # 🟣 Kheyat l-Streaming Status hna باش yban purple:
+    stream_activity = discord.Streaming(
+        name="Discord.gg/Octopus-s",          # Smyt l-status
+        url="https://www.twitch.tv/discord"   # Khass dima tkon l-URL dial Twitch/YouTube باش y-t'afficha l-icon l-mauve
+    )
+    await bot.change_presence(activity=stream_activity)
 
 @bot.tree.command(name="broadcast", description="Sefet mp l ga3 lmembers m3a delay bash matbanach")
 @app_commands.describe(
@@ -37,7 +42,6 @@ async def broadcast(
     min_delay: int = 5, 
     max_delay: int = 12
 ):
-    # Check 1: Wash l-command tdart f l-room l-m9boula?
     if interaction.channel_id != ALLOWED_CHANNEL_ID:
         await interaction.response.send_message(
             f"❌ NOT HERE DONKEY GO TO THIS ROOM  <#{ALLOWED_CHANNEL_ID}>.", 
@@ -45,7 +49,6 @@ async def broadcast(
         )
         return
 
-    # Check 2: Admin permission
     if not interaction.user.guild_permissions.administrator:
         await interaction.response.send_message("❌ WHERE IS PERIMISSION ? (Administrator) DONT DO THAT AGAIN", ephemeral=True)
         return
@@ -65,7 +68,6 @@ async def broadcast(
             failed += 1
             print(f"❌ Madirosh l: {member.name}")
 
-        # Random delay bash matbanach
         wait_time = random.uniform(min_delay, max_delay)
         await asyncio.sleep(wait_time)
 
